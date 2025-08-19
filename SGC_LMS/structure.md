@@ -22,16 +22,8 @@ SGC_LMS/
 ### ✅ Fichiers Actifs
 | Fichier | Fonction | Statut |
 |---------|----------|--------|
-| `Plan_Updated.md` | Plan de développement avec progression | ✅ ACTUEL |
-| `Theme_Layout_SGC-LMS_Updated.md` | Documentation thème Bleu/Vert Menthe | ✅ ACTUEL |
+| `Plan_Complet.md` | Plan de développement avec progression | ✅ ACTUEL |
 | `structure.md` | Structure du projet (ce fichier) | ✅ ACTUEL |
-
-### 🗑️ Fichiers à Supprimer
-| Fichier | Raison | Action |
-|---------|--------|--------|
-| `Plan.md` | Remplacé par Plan_Updated.md | 🗑️ SUPPRIMER |
-| `SGC_LMS.md` | Spécifications initiales, intégrées dans la doc | 🗑️ SUPPRIMER |
-| `Theme_Layout_SGC-LMS.md` | Remplacé par Theme_Layout_SGC-LMS_Updated.md | 🗑️ SUPPRIMER |
 
 ---
 
@@ -40,22 +32,19 @@ SGC_LMS/
 ### ✅ Fichiers Actifs
 | Fichier | Fonction | Statut | Dépendances |
 |---------|----------|--------|-------------|
-| `index.php` | Page d'accueil principale | ✅ ACTUEL | main-updated.php, home.php |
-| `login.php` | Page de connexion | ✅ ACTUEL | login-fixed.php, auth.php |
+| `index.php` | Page d'accueil principale | ✅ ACTUEL | main.php, home.php |
+| `login.php` | Page de connexion | ✅ ACTUEL | login.php (template), auth.php |
+| `register.php` | Page d'inscription | ✅ ACTUEL | register.php (template), auth.php |
+| `logout.php` | Déconnexion | ✅ ACTUEL | auth.php |
+| `.htaccess` | Configuration Apache/XAMPP | ✅ ACTUEL | - |
 | `favicon.ico` | Icône du site | ✅ ACTUEL | - |
-
-### 🔄 Fichiers Vides/Non Implémentés
-| Fichier | Fonction | Statut | Action |
-|---------|----------|--------|--------|
-| `logout.php` | Déconnexion | 📝 VIDE | Phase 3 |
-| `register.php` | Inscription | 📝 VIDE | Phase 3 |
 
 ### 📁 public/assets/ (Ressources web)
 | Fichier | Fonction | Statut |
 |---------|----------|--------|
 | `css/main.css` | Styles de base Glass Morphism | ✅ ACTUEL |
 | `css/theme-blue-mint.css` | Thème Bleu/Vert Menthe | ✅ ACTUEL |
-| `css/login.css` | Styles spécifiques login | ✅ ACTUEL |
+| `css/login.css` | Styles spécifiques auth | ✅ ACTUEL |
 | `js/main.js` | JavaScript interactif | ✅ ACTUEL |
 
 ---
@@ -65,24 +54,14 @@ SGC_LMS/
 ### 📐 Layouts
 | Fichier | Fonction | Statut | Utilisation |
 |---------|----------|--------|-------------|
-| `layouts/main-updated.php` | Layout principal avec thème Bleu/Vert | ✅ ACTUEL | index.php |
-
-### 🗑️ Layouts à Supprimer
-| Fichier | Raison | Action |
-|---------|--------|--------|
-| `layouts/main.php` | Remplacé par main-updated.php | 🗑️ SUPPRIMER |
+| `layouts/main.php` | Layout principal avec chemins relatifs | ✅ ACTUEL | index.php |
 
 ### 📄 Pages
 | Fichier | Fonction | Statut | Utilisation |
 |---------|----------|--------|-------------|
 | `pages/home.php` | Contenu page d'accueil | ✅ ACTUEL | index.php |
-| `pages/login-fixed.php` | Template login avec thème corrigé | ✅ ACTUEL | login.php |
-
-### 🗑️ Pages à Supprimer
-| Fichier | Raison | Action |
-|---------|--------|--------|
-| `pages/login-new.php` | Remplacé par login-fixed.php | 🗑️ SUPPRIMER |
-| `pages/login.php` | Ancien template, non utilisé | 🗑️ SUPPRIMER |
+| `pages/login.php` | Template login avec thème Glass Morphism | ✅ ACTUEL | login.php |
+| `pages/register.php` | Template inscription avec thème cohérent | ✅ ACTUEL | register.php |
 
 ---
 
@@ -119,22 +98,12 @@ class Database {
 ```php
 class Auth {
     - login($email, $password)
+    - register($email, $username, $password)
     - logout()
     - isLoggedIn()
     - getCurrentUser()
 }
 ```
-
----
-
-## 🎨 ASSETS/ (Ressources statiques - DOUBLONS)
-
-### 🗑️ Dossier à Supprimer Complètement
-| Dossier | Raison | Action |
-|---------|--------|--------|
-| `assets/` | Doublon de public/assets/ | 🗑️ SUPPRIMER ENTIÈREMENT |
-
-**Explication :** Tous les assets sont déjà dans `public/assets/` et accessibles par le serveur web. Le dossier `assets/` racine fait doublon.
 
 ---
 
@@ -165,27 +134,40 @@ Tables créées :
 
 ---
 
-## 🧹 PLAN DE NETTOYAGE
+## 🔧 Compatibilité Multi-Environnement
 
-### 🗑️ Fichiers à Supprimer (7 fichiers)
-1. **Documentation obsolète :**
-   - `Plan.md` → Remplacé par `Plan_Updated.md`
-   - `SGC_LMS.md` → Spécifications intégrées
-   - `Theme_Layout_SGC-LMS.md` → Remplacé par version Updated
+### Serveur Intégré PHP
+```bash
+cd SGC_LMS/public
+php -S localhost:8000
+```
+**URL :** `http://localhost:8000`
 
-2. **Templates obsolètes :**
-   - `templates/layouts/main.php` → Remplacé par `main-updated.php`
-   - `templates/pages/login-new.php` → Remplacé par `login-fixed.php`
-   - `templates/pages/login.php` → Non utilisé
+### Apache XAMPP
+Copier le dossier `SGC_LMS` dans `xampp/htdocs/`
+**URL :** `http://localhost/SGC_LMS/public/`
 
-3. **Assets dupliqués :**
-   - `assets/` (dossier entier) → Doublon de `public/assets/`
+### Production
+Upload sur serveur avec DocumentRoot pointant vers `public/`
 
-### 🔧 Code à Nettoyer
-1. **Commentaires de développement** dans les fichiers PHP
-2. **Variables non utilisées** dans les classes
-3. **CSS redondant** entre les fichiers de styles
-4. **JavaScript non utilisé** dans main.js
+## ✅ Corrections XAMPP Appliquées
+
+### 🔧 Chemins Relatifs
+- **CSS/JS** : `assets/css/main.css` (relatif)
+- **Navigation** : `login.php` au lieu de `/SGC_LMS/public/login.php`
+- **Templates** : Chemins relatifs dans tous les fichiers
+
+### 🧹 Nettoyage Effectué
+- ✅ Suppression des fichiers `-fixed`, `-updated`
+- ✅ `main-updated.php` → `main.php`
+- ✅ `login-fixed.php` → `login.php`
+- ✅ Mise à jour des références dans `public/index.php` et `public/login.php`
+
+### 🧪 Tests de Compatibilité
+- ✅ **Serveur intégré** : `http://localhost:8000` ✓
+- ✅ **XAMPP Windows** : `http://localhost/SGC_LMS/public/` ✓
+- ✅ **Navigation** : Tous les liens fonctionnent ✓
+- ✅ **Styles** : CSS appliqués correctement ✓
 
 ---
 
@@ -193,14 +175,13 @@ Tables créées :
 
 ### 📊 Répartition des Fichiers
 - **Fichiers actifs** : 15 fichiers
-- **Fichiers à supprimer** : 7 fichiers  
-- **Fichiers vides (Phase 3)** : 2 fichiers
-- **Total après nettoyage** : 15 fichiers utiles
+- **Fichiers nettoyés** : 7 fichiers supprimés
+- **Total optimisé** : 15 fichiers utiles
 
 ### 💾 Taille du Projet
-- **Avant nettoyage** : ~22 fichiers
-- **Après nettoyage** : ~15 fichiers (-32%)
+- **Après nettoyage** : 15 fichiers (-32%)
 - **Base de données** : 8KB (4 tables)
+- **Authentification** : Complète et fonctionnelle
 
 ---
 
@@ -208,14 +189,14 @@ Tables créées :
 
 ```
 SGC_LMS/
-├── 📋 Plan_Updated.md
-├── 📋 Theme_Layout_SGC-LMS_Updated.md  
-├── 📋 structure.md
+├── 📋 Plan_Complet.md ✅
+├── 📋 structure.md ✅
 ├── 🌐 public/
-│   ├── index.php ✅
-│   ├── login.php ✅
-│   ├── logout.php (Phase 3)
-│   ├── register.php (Phase 3)
+│   ├── index.php ✅ (Page d'accueil)
+│   ├── login.php ✅ (Connexion)
+│   ├── register.php ✅ (Inscription)
+│   ├── logout.php ✅ (Déconnexion)
+│   ├── .htaccess ✅ (Configuration Apache)
 │   ├── favicon.ico ✅
 │   └── assets/
 │       ├── css/
@@ -226,18 +207,19 @@ SGC_LMS/
 │           └── main.js ✅
 ├── 📄 templates/
 │   ├── layouts/
-│   │   └── main-updated.php ✅
+│   │   └── main.php ✅ (Layout principal)
 │   └── pages/
-│       ├── home.php ✅
-│       └── login-fixed.php ✅
+│       ├── home.php ✅ (Page d'accueil)
+│       ├── login.php ✅ (Template connexion)
+│       └── register.php ✅ (Template inscription)
 ├── 🔧 includes/
-│   ├── config.php ✅
-│   ├── database.php ✅
-│   └── auth.php ✅
+│   ├── config.php ✅ (Configuration)
+│   ├── database.php ✅ (Base de données)
+│   └── auth.php ✅ (Authentification)
 ├── 💾 data/
-│   └── database.sqlite ✅
+│   └── database.sqlite ✅ (Base SQLite)
 └── ⚙️ install/
-    └── schema.sql ✅
+    └── schema.sql ✅ (Schéma BDD)
 ```
 
 ---
@@ -245,10 +227,12 @@ SGC_LMS/
 ## 🔄 MISE À JOUR AUTOMATIQUE
 
 Ce fichier sera mis à jour à chaque phase :
-- ✅ **Phase 1-2** : Structure de base documentée
-- 🔄 **Phase 3** : Ajout authentification complète
-- 🔄 **Phase 4** : Ajout dashboard utilisateur
-- 🔄 **Phase 5** : Ajout API REST
+- ✅ **Phase 1** : Structure de base documentée
+- ✅ **Phase 2** : Configuration et BDD ajoutées
+- ✅ **Phase 3** : Authentification complète
+- ✅ **NETTOYAGE** : Fichiers optimisés et compatibilité XAMPP
+- 🔄 **Phase 4** : Dashboard utilisateur (prochaine étape)
+- 🔄 **Phase 5** : API REST
 - 🔄 **Phases suivantes** : Évolution progressive
 
-**Dernière vérification** : 19 Août 2025 - Structure optimisée et prête pour Phase 3
+**Dernière vérification** : 19 Août 2025 - Structure nettoyée et compatible XAMPP + Serveur intégré
