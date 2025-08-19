@@ -1,0 +1,269 @@
+/* ===== THÈME BLEU/VERT MENTHE - SGC_LMS ===== */
+
+/* Variables de couleurs mises à jour */
+:root {
+  /* Système de Couleurs Bleu/Vert Menthe - NOUVELLE PALETTE */
+  --color-primary: 59 130 246; /* #3B82F6 - Bleu principal */
+  --color-secondary: 34 197 94; /* #22C55E - Vert menthe */
+  --color-accent: 134 239 172; /* #86EFAC - Vert menthe clair */
+  --color-success: 34 197 94; /* #22C55E - Vert */
+  --color-warning: 245 158 11; /* #F59E0B - Orange */
+  --color-danger: 239 68 68; /* #EF4444 - Rouge */
+}
+
+/* Thèmes de couleur alternatifs mis à jour */
+.theme-blue-mint {
+  --color-primary: 59 130 246; /* Bleu principal */
+  --color-secondary: 34 197 94; /* Vert menthe */
+  --color-accent: 134 239 172; /* Vert menthe clair */
+}
+
+/* CORRECTION MENU SANDWICH - LISIBILITÉ AMÉLIORÉE */
+
+/* Menu Mobile avec arrière-plan plus opaque */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.8); /* Plus opaque pour meilleur contraste */
+  backdrop-filter: blur(10px); /* Blur plus prononcé */
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-300) var(--transition-base);
+  padding: 2rem;
+}
+
+.mobile-menu.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Container du menu avec meilleur contraste */
+.mobile-menu-content {
+  background: rgba(255, 255, 255, 0.95); /* Beaucoup plus opaque */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Liens du menu mobile avec meilleur contraste */
+.mobile-nav-link {
+  color: #1e3a8a !important; /* Bleu marine foncé pour lisibilité */
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  background: rgba(59, 130, 246, 0.1); /* Fond bleu très léger */
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all var(--duration-300) var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.mobile-nav-link:hover {
+  background: rgb(var(--color-primary));
+  color: white !important;
+  border-color: rgba(var(--color-primary), 0.5);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Boutons avec nouvelle palette */
+.btn-primary {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  color: white !important;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary) / 0.9) 0%, 
+    rgb(var(--color-secondary) / 0.9) 100%
+  );
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgb(var(--color-primary));
+  color: rgb(var(--color-primary)) !important;
+}
+
+.btn-outline:hover {
+  background: rgb(var(--color-primary));
+  color: white !important;
+}
+
+/* Navigation avec nouvelle palette */
+.navbar-brand {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-link:hover {
+  color: rgb(var(--color-primary)) !important;
+}
+
+.nav-link::after {
+  background: rgb(var(--color-primary));
+}
+
+/* Hero section avec nouvelle palette */
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Feature icons avec nouvelle palette */
+.feature-icon.gradient-blue-mint {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+}
+
+.feature-icon.gradient-mint {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-secondary)) 0%, 
+    rgb(var(--color-accent)) 100%
+  );
+}
+
+/* Login page avec nouvelle palette */
+.brand-logo {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-name {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-input:focus {
+  border-color: rgb(var(--color-primary));
+  box-shadow: 
+    0 0 0 3px rgba(var(--color-primary), 0.1),
+    0 8px 25px rgba(var(--color-primary), 0.15);
+}
+
+.checkbox-custom {
+  border: 2px solid rgba(var(--color-primary), 0.3);
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background: rgb(var(--color-primary));
+  border-color: rgb(var(--color-primary));
+}
+
+.forgot-link {
+  color: rgb(var(--color-primary)) !important;
+}
+
+.forgot-link:hover {
+  color: rgb(var(--color-secondary)) !important;
+}
+
+.signup-link {
+  color: rgb(var(--color-primary)) !important;
+}
+
+.signup-link:hover {
+  color: rgb(var(--color-secondary)) !important;
+}
+
+/* Footer avec nouvelle palette */
+.footer-title {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)) 0%, 
+    rgb(var(--color-secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-links a:hover {
+  color: rgb(var(--color-primary)) !important;
+}
+
+/* Éléments décoratifs avec nouvelle palette */
+.decoration-1 {
+  background: radial-gradient(circle, 
+    rgba(var(--color-primary), 0.15) 0%, 
+    transparent 70%
+  );
+}
+
+.decoration-2 {
+  background: radial-gradient(circle, 
+    rgba(var(--color-secondary), 0.15) 0%, 
+    transparent 70%
+  );
+}
+
+.decoration-3 {
+  background: radial-gradient(circle, 
+    rgba(var(--color-accent), 0.1) 0%, 
+    transparent 70%
+  );
+}
+
+/* Hero gradients avec nouvelle palette */
+.hero-gradient-1 {
+  background: radial-gradient(circle, 
+    rgba(var(--color-primary), 0.15) 0%, 
+    transparent 70%
+  );
+}
+
+.hero-gradient-2 {
+  background: radial-gradient(circle, 
+    rgba(var(--color-secondary), 0.15) 0%, 
+    transparent 70%
+  );
+}
