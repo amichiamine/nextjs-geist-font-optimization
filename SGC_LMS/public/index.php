@@ -7,5 +7,5 @@ session_start();
 // (auth.php sera ajouté en Phase 3)
 
 $content = file_get_contents('../templates/pages/home.php');
-include '../templates/layouts/main-updated.php';
+include '../templates/layouts/main.php';
 ?>
