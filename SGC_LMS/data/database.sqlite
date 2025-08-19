@@ -1,0 +1,2 @@
+-- Base de données SQLite pour SGC_LMS
+-- Les tables seront créées lors de l'exécution des migrations
