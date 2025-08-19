@@ -44,5 +44,48 @@ class Auth {
         }
         return null;
     }
+
+    public function register($email, $username, $password, $firstName = '', $lastName = '') {
+        // Vérifier si l'email existe déjà
+        $sql = "SELECT id FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        
+        if ($stmt->fetch()) {
+            throw new Exception('Cet email est déjà utilisé');
+        }
+
+        // Vérifier si le nom d'utilisateur existe déjà
+        $sql = "SELECT id FROM users WHERE username = :username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['username' => $username]);
+        
+        if ($stmt->fetch()) {
+            throw new Exception('Ce nom d\'utilisateur est déjà pris');
+        }
+
+        // Créer le nouvel utilisateur
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $userId = uniqid('user_', true);
+        
+        $sql = "INSERT INTO users (id, email, username, password, first_name, last_name, role, created_at) 
+                VALUES (:id, :email, :username, :password, :first_name, :last_name, 'apprenant', datetime('now'))";
+        
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            'id' => $userId,
+            'email' => $email,
+            'username' => $username,
+            'password' => $hashedPassword,
+            'first_name' => $firstName,
+            'last_name' => $lastName
+        ]);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de la création du compte');
+        }
+
+        return $userId;
+    }
 }
 ?>
