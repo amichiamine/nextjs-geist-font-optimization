@@ -1,0 +1,30 @@
+
+# Configuration pour SGC_LMS
+RewriteEngine On
+
+# Définir le répertoire de base
+RewriteBase /SGC_LMS/public/
+
+# Permettre l'accès direct aux fichiers existants
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rediriger les autres requêtes vers index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Configuration de sécurité
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Empêcher l'accès aux fichiers sensibles
+<Files "config.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Configuration des types MIME
+AddType application/javascript .js
+AddType text/css .css
