@@ -21,5 +21,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Inclure le template avec design Glass Morphism et thème bleu/vert menthe
-include '../templates/pages/login-fixed.php';
+include '../templates/pages/login.php';
 ?>
